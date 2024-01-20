@@ -1,0 +1,12 @@
+body {
+  background-color: black;
+}
+
+.card {
+  margin: 10px 10px;
+  position: absolute;
+  height: 610px;
+  width: 955px;
+  background-color: rgb(30, 30, 30);
+  border-radius: 10px;
+}

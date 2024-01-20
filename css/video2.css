@@ -1,0 +1,90 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: "roboto medium";
+}
+
+.video-background {
+  height: 290px;
+  width: 530px;
+  margin-top: -120px;
+  filter: blur(0.3px)brightness(0.2);
+}
+.odometer {
+  font-family: "roboto medium";
+}
+
+.card1 {
+  margin-top: -260px;
+  margin-left: 75px;
+}
+
+.card2 {
+  margin-top: -180px;
+  margin-left: 75px;
+}
+
+.video-avatar {
+  height: 230px;
+  width: 420px;
+  border-radius: 10px;
+}
+
+.video-name {
+  font-family: "ubuntu light";
+  color: white;
+  font-size: 20px;
+  top: -25px;
+  margin-left: 18px;
+  width: 700px;
+  overflow:hidden;
+  position: absolute;
+  margin-top: 30px;
+}
+
+.views-icon {
+  position: absolute;
+  margin-top: 15px;
+}
+
+.views {
+  font-family: "ubuntu light";
+  font-size: 70px;
+  color: rgb(255, 255, 100);
+  top: -10px;
+  margin-left: 365px;
+}
+
+.likes {
+  font-family: "ubuntu light";
+  font-size: 70px;
+  color: rgb(100, 255, 100);
+  margin-left: -10px;
+  margin-left: 365px;
+}
+
+.count {
+  font-family: "roboto";
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  margin-top: -5px;
+  margin-left: 5px;
+}
+
+.count1 {
+  font-family: "roboto medium";
+  font-weight: 500;
+  font-size:75px;
+  color: white;
+  top: -143px;
+  margin-left:  470px;
+}
+
+.count2 {
+  font-family: "roboto Medium";
+  font-weight: 500;
+  font-size: 75px;
+  top: -143px;
+  margin-left: 470px;
+}

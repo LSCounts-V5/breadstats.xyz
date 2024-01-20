@@ -1,0 +1,21 @@
+body {
+  background-color: black;
+  font-family: "roboto medium";
+  color: white;
+}
+
+.e {
+  margin-top: -70px;
+}
+
+.odometer {
+  font-size: 130px;
+  color: white;
+  margin-top: -5px;
+}
+
+.text {
+  font-size: 100px;
+  font-family: "ubuntu medium";
+  color: white;
+}

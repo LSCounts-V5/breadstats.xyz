@@ -1,0 +1,90 @@
+body {
+  background-color: black;
+  font-family: "roboto medium";
+  color: white;
+  text-align: center;
+}
+
+.count {
+  height: 120px;
+  overflow: hidden;
+  margin-top: -20px;
+}
+
+.t {
+  font-size: 25px;
+  font-family: "ubuntu";
+}
+
+.odometer {
+  position: absolute;
+  margin-left: 20px;
+  font-size: 70px;
+}
+
+.red {
+  color: rgb(255, 0,0);
+}
+
+.seperater1 {
+  position: absolute;
+  font-size: 0px;
+  color: white;
+}
+
+.seperater2 {
+  position: absolute;
+  font-size: 65px;
+  color: white;
+
+}
+
+.seperater3 {
+  position: absolute;
+  font-size: 65px;
+  color: white;
+}
+
+.text {
+  margin-top: -20px;
+}
+
+.q {
+  font-size: 0px;
+}
+
+.d {
+  font-size: 25px;
+  font-family: "ubuntu";
+  margin-left: 30px;
+  margin-top: -0px;
+}
+
+.h {
+  font-size: 25px;
+  font-family: "ubuntu";
+  margin-left: -100px;
+  margin-top: -5px;
+}
+
+.m {
+  font-size: 25px;
+  font-family: "ubuntu";
+  margin-left: -30px;
+  margin-top: -14px;
+}
+
+.s {
+  font-size: 25px;
+  font-family: "ubuntu";
+  margin-left: 50px;
+  margin-top: -14px;
+}
+
+.hms {
+  position: absolute;
+  font-size: 35px;
+  color: rgb(190, 190, 190);
+  font-family: "ubuntu light";
+  margin-top: -30px;
+}

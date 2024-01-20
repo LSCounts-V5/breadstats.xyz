@@ -1,0 +1,71 @@
+body {
+  background-color: black;
+  font-family: "roboto medium";
+  color: white;
+}
+
+.card1 {
+  height: 250px;
+  width: 1200px;
+}
+
+.avatar1 {
+  height: 250px;
+  width: 250px;
+  border-radius: 15px;
+  border: solid 2px white;
+}
+
+.count1 {
+  font-size: 130px;
+  color: white;
+  margin-top: -50px;
+  margin-left: 265px;
+}
+
+.name1 {
+  font-size: 75px;
+  font-family: "ubuntu light";
+  margin-top: -255px;
+  margin-left: 265px;
+  color: white;
+}
+
+
+.card2 {
+  height: 250px;
+  width: 1200px;
+}
+
+.avatar2 {
+  margin-top: 15px;
+  height: 250px;
+  width: 250px;
+  border-radius: 15px;
+  border: solid 2px white;
+}
+
+.name2{
+  font-size: 75px;
+  font-family: "ubuntu light";
+  color: white;
+  margin-top: -250px;
+  margin-left: 265px;
+}
+
+.count2 {
+  font-size: 130px;
+  margin-top: -50px;
+  margin-left: 265px;
+}
+
+.battle {
+  font-size: 100px;
+  margin-top: -15px;
+}
+
+.a {
+  font-size: 30px;
+  font-family: "ubuntu light";
+  margin-top: 50px;
+}

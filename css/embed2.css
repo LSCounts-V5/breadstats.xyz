@@ -1,0 +1,26 @@
+body {
+  background-color: black;
+  font-family: "roboto medium";
+  color: white;
+}
+
+.pfp {
+  border-radius: 15px;
+  margin-top: 0px;
+  height: 120px;
+  width: 120px;
+}
+
+.name {
+  font-size: 90px;
+  color: white;
+  font-family: "ubuntu light";
+  margin-top: -117px;
+  margin-left: 130px;
+}
+
+.odometer {
+  font-size: 250px;
+  position: absolute;
+  margin-top: -15px;
+}

@@ -1,0 +1,93 @@
+body {
+  align-items: center;
+  background-color: black;
+  font-family: "roboto medium";
+  color: white;
+  text-align: left;
+}
+
+.odometer {
+  font-size: 100px;
+  position: absolute;
+  margin-top: -295px;
+  margin-left: 100px;
+}
+
+.gr {
+  font-size: 100px;
+  margin-top: 30px;
+  color: yellow;
+}
+
+.btn1 {
+  align-items: center;
+  border-radius: 100px;
+  background-color: black;
+  height: 20px;
+  width: 80px;
+  position: absolute;
+  border: solid 2px rgb(255,100,255);
+  color: white;
+  text-align: center;
+  transition: 300ms;
+}
+
+.btn1:hover {
+  transition: 300ms;
+  background-color: rgb(255,100,255);
+  box-shadow: 0 0 5px rgb(255,100,255), 0 0 10px rgb(255,100,255);
+}
+
+.btn2 {
+  transition: 300ms;
+  margin-left: 90px;
+  align-items: center;
+  border: solid 2px rgb(255,100,255);;
+  border-radius: 100px;
+  background-color: black;
+  height: 20px;
+  width: 80px;
+  position: absolute;
+  color: white;
+  text-align: center;
+}
+
+.btn2:hover {
+  transition: 300ms;
+  background-color: rgb(255,100,255);
+  box-shadow: 0 0 5px rgb(255,100,255), 0 0 10px rgb(255,100,255);
+}
+
+.card2 {
+  margin: 5px 0px;
+  height: 130px;
+}
+
+.searchbar {
+  background-color: rgb(24, 24, 24);
+  border: none;
+  border-radius: 3px;
+  height: 20px;
+  width: 240px;
+  color: white;
+  font-family: "roboto medium";
+  transition: 300ms;
+}
+
+.searchbar:hover {
+  transition: 300ms;
+  background-color: rgb(44, 44, 44);
+}
+
+.user-name {
+  font-family: "ubuntu medium";
+  font-size: 18px;
+  color: rgb(123, 123, 123);
+  margin-top: -0px;
+}
+
+.current {
+  font-family: "roboto";
+  font-size: 12px;
+  color: rgb(78, 78, 78);
+}

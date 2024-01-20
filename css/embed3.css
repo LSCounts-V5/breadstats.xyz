@@ -1,0 +1,46 @@
+body {
+  background-color: black;
+  font-family: "roboto medium";
+  color: white;
+  text-align: center;
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.125rem;
+  display: flex;
+}
+
+.avatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 100px;
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.name {
+  font-size: 44px;
+  margin-top: -60px;
+  margin-left: 25px;
+  font-family: "ubuntu";
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.odometer {
+  font-size: 150px;
+  margin-top: -10px;
+}
+
+.footer {
+  font-size: 20px;
+  font-family: "ubuntu";
+}
