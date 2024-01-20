@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Battle</title>
+    <link href="../css/battle.css" rel="stylesheet">
+    <link href="../odometer/odometer.css" rel="stylesheet">
+    <script src="../odometer/odometer.js"></script>
+  </head>
+
+  <body>
+    <div class="card1">
+      <img id="user1Avatar" class="avatar1">
+      <h1 id="user1Name" class="name1">Loading...</h1>
+      <span id="user1Count" class="odometer count1">0</span>
+    </div>
+    <div class="card2">
+      <img id="user2Avatar" class="avatar2">
+      <h1 id="user2Name" class="name2">Loading...</h1>
+      <span id="user2Count" class="odometer count2">0</span>
+    </div>
+    <h1 class="a">Sub Gap:</h1>
+    <span class="odometer battle" id="gap">0</span>
+  </body>
+  <script>
+     const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+
+    fetch(`https://mixerno.space/api/youtube-channel-counter/user/UCtSdtkoGfPwIP8eh1N2pQ3A`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("user1Name").textContent = data.user[0].count;
+        document.getElementById("user1Avatar").src = data.user[1].count;
+      });
+
+      fetch(`https://mixerno.space/api/youtube-channel-counter/user/UCpf1b3b91liW2T55js7_U3Q`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("user2Name").textContent = data.user[0].count;
+        document.getElementById("user2Avatar").src = data.user[1].count;
+      });
+
+
+      function data1() {
+      fetch(`https://axern.space/api/get?platform=youtube&type=channel&id=UCtSdtkoGfPwIP8eh1N2pQ3A`)
+        .then((res) => res.json())
+        .then((data1) => {
+          console.log(data1);
+          count1 = data1.estSubCount;
+        });
+      }
+    function data2() {
+      fetch(`https://axern.space/api/get?platform=youtube&type=channel&id=UCpf1b3b91liW2T55js7_U3Q`)
+        .then((res) => res.json())
+        .then((data2) => {
+          console.log(data2);
+          count2 = data2.estSubCount;
+        });
+    }
+    function render() {
+      document.getElementById("user1Count").innerHTML = count1;
+      document.getElementById("user2Count").innerHTML = count2;
+      document.getElementById("gap").innerHTML = count1 - count2;
+    }
+
+    setInterval(() => {
+      data1();
+      data2();
+      render();
+    }, 2000);
+  </script>
+</html>

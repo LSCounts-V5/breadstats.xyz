@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link href="../odometer/odometer2.css" rel="stylesheet">
+    <script src="../odometer/odometer2.js"></script>
+    <link href="../css/countdown.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1 class="t">NEW AMAZING DIGITAL CIRUS EPISODE IN:</h1>
+    <div class="count">
+      <span id="day" class="odometer">00</span>
+      <h1 class="seperater1">:</h1>
+      <span id="hour" class="odometer">00:</span>
+      <h1 class="seperater2">:</h1>
+      <span id="minute" class="odometer">00:</span>
+      <h1 class="seperater3">:</h1>
+      <span id="second" class="odometer red">00</span>
+    </div>
+    <div class="text">
+      <h1 class="hms"></h1>Days : Hours : Minutes : Seconds</h1>
+    </div>
+  </body>
+  <script>
+    // Set the date we're counting down to
+var countDownDate = new Date("Jan 19 2024 05:40:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("day").innerHTML = days + ": ";
+  document.getElementById("hour").innerHTML = hours + ":";
+  document.getElementById("minute").innerHTML = minutes+ ":";
+  document.getElementById("second").innerHTML = seconds + "";
+
+  //Overcount 
+    
+})
+  </script>
+</html>

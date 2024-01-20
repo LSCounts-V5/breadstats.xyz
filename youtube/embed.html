@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Embed</title>
+    <link href="../css/embed.css" rel="stylesheet"/>
+    <link href="../odometer/odometer.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <script src="../odometer/odometer.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
+
+  <body>
+    <div class="card1">
+      <img class="pfp" id="pfp" alt="">
+      <h1 onclick="search()" id="name" class="name">Loading...</h1>
+      <span class="odometer" id="count">0</span>
+    </div>
+  </body>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+
+    fetch(`https://mixerno.space/api/youtube-channel-counter/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.user[0].count;
+        document.getElementById("pfp").src = data.user[1].count;
+      });
+
+      function data() {
+      fetch(`https://axern.space/api/get?platform=youtube&type=channel&id=${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          count = data.estSubCount;
+          count2 = data.estViewCount;
+        });
+    }
+
+    function render() {
+      document.getElementById("count").innerHTML = count;
+    }
+
+    setInterval(() => {
+      data();
+      render();
+    }, 2000);
+
+    function search() {
+  const prompt = window.prompt("Enter channel Name, ID, or URL.");
+  if (prompt) {
+    fetch(`https://livecounts.xyz/api/youtube-live-subscriber-count/search/${prompt}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "?id=" + data.results[0].id;
+        idName = data.results[0].id;
+        genGraph();
+      });
+  }
+};
+  </script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link href="../css/count.css" rel="stylesheet"/>
+    <link href="../odometer/odometer.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <script src="../odometer/odometer.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.highcharts.com/10.3.3/highcharts.js"></script>
+  </head>
+
+  <body>
+    <div class="card1">
+      <span class="odometer count" id="count">0</span>
+      <h1 class="gr">Subscribers<iconify-icon icon="material-symbols:person" style="color: lime;"></iconify-icon></h1>
+    </div>
+    <div class="card2">
+      <span class="current">Current user:</span>
+      <h1 class="user-name" id="name">Loading...</h1>
+      <input type="text" placeholder="Search.." class="searchbar" onclick="search()">
+    </div>
+    <div class="card3">
+      <button class="btn1" onclick="">Sub Count</button>
+      <button class="btn2" onclick="">View Count</button>
+    </div>
+  </body>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+
+    fetch(`https://mixerno.space/api/youtube-channel-counter/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.user[0].count;
+      });
+
+      function data() {
+      fetch(`https://axern.space/api/get?platform=youtube&type=channel&id=${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          count = data.estSubCount;
+          count2 = data.estViewCount;
+        });
+    }
+    function render() {
+      document.getElementById("count").innerHTML = count;
+    }
+
+    setInterval(() => {
+      data();
+      render();
+    }, 2000);
+
+
+    function search() {
+  const prompt = window.prompt("Enter channel Name, ID, or URL.");
+  if (prompt) {
+    fetch(`https://livecounts.xyz/api/youtube-live-subscriber-count/search/${prompt}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "?id=" + data.results[0].id;
+        idName = data.results[0].id;
+        genGraph();
+      });
+  }
+};
+  </script>
+</html>

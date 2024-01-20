@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link href="../css/clock.css" rel="stylesheet">
+    <link href="../odometer/odometer2.css" rel="stylesheet">
+    <script src="../odometer/odometer2.js"></script>
+  </head>
+
+  <body>
+    <h1 id="uh" class="um">0000/00/00</h1>
+    <div class="card">
+      <span id="hr" class="odometer count1">00</span>
+      <h1 class="seperater">:</h1>
+      <span id="min" class="odometer count2">00</span>
+      <h1 class="seperater1">:</h1>
+      <span id="sec" class="odometer count3">00</span>
+      <span id="session" class="session"></span>
+    </div>
+  </body>
+
+  <script>
+    function currentTime() {
+  let date = new Date(); 
+  let year = date.getFullYear();
+  let month = date.getMonth();
+  let day = date.getDate();
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  let session = "AM";
+
+  if(hh == 0){
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
+   
+   hh = (hh < 10) ? "0" + hh : hh;
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss;
+    
+   let datea = year + "/" + month + "/" + day;
+   let time = hh + ":";
+   let time1 = mm + ":";
+   let time2 =  ss + " ";
+   let time3 = session;
+
+  document.getElementById("uh").innerText = datea; 
+  document.getElementById("hr").innerText = time; 
+  document.getElementById("min").innerText = time1; 
+  document.getElementById("sec").innerText = time2; 
+  document.getElementById("session").innerText = time3; 
+  let t = setTimeout(function(){ currentTime() }, 1000);
+}
+currentTime();
+  </script>
+</html>

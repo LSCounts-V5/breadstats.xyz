@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Avatar</title>
+    <link href="../css/pfp.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div>
+      <img class="avatar" id="pfp">
+      <span class="current">Current user:</span>
+      <h1 class="user-name" id="name">Loading...</h1>
+      <input type="text" placeholder="Search.." class="searchbar" onclick="search()">
+    </div>
+  </body>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+
+    fetch(`https://mixerno.space/api/youtube-channel-counter/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.user[0].count;
+        document.getElementById("pfp").src = data.user[1].count;
+      });
+
+    function search() {
+  const prompt = window.prompt("Enter channel Name, ID, or URL.");
+  if (prompt) {
+    fetch(`https://livecounts.xyz/api/youtube-live-subscriber-count/search/${prompt}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "?id=" + data.results[0].id;
+        idName = data.results[0].id;
+        genGraph();
+      });
+  }
+};
+  </script>
+</html>

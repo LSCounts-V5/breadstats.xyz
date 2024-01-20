@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Graph</title>
+    <link href="../css/graph.css" rel="stylesheet">
+    <script src="https://code.highcharts.com/10.3.3/highcharts.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <div id="graph" style="height: 100%; width: 100%;"></div>
+      <div class="a">
+         <span class="current">Current user:</span>
+        <h1 class="user-name" id="name">Loading...</h1>
+        <input type="text" placeholder="Search.." class="searchbar" onclick="search()">
+    </div>
+    </div>
+  </body>
+
+  <script>
+          const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+
+    fetch(`https://mixerno.space/api/youtube-channel-counter/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.user[0].count;
+        document.getElementById("pfp").src = data.user[1].count;
+      });
+
+      function data() {
+      fetch(`https://axern.space/api/get?platform=youtube&type=channel&id=${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          count = data.estSubCount;
+          count2 = data.estViewCount;
+        });
+    }
+
+    function render() {
+
+    };
+
+    setInterval(() => {
+      data();
+      render();
+    }, 2000);
+
+
+    function search() {
+  const prompt = window.prompt("Enter channel Name, ID, or URL.");
+  if (prompt) {
+    fetch(`https://livecounts.xyz/api/youtube-live-subscriber-count/search/${prompt}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "?id=" + data.results[0].id;
+        idName = data.results[0].id;
+        genGraph();
+      });
+  }
+};
+
+const chart = new Highcharts.chart({
+            chart: {
+                renderTo: "graph",
+                type: "line",
+                zoomType: "x",
+                backgroundColor: "transparent",
+                plotBorderColor: "transparant",
+                Animation: true,
+            },
+            title: {
+                text: "",
+            },
+            xAxis: {
+                type: "datetime",
+                tickPixelInterval: 500,
+                visible: false,
+            },
+            yAxis: {
+                visible: false,
+            },
+            credits: {
+                text: "",
+                enabled: true,
+                href: "kys = keep yourself safe",
+            },
+                  tooltip: {
+        shared: true,
+        formatter: function () {
+          var index = this.points[0].series.xData.indexOf(this.x);
+          var lastY = this.points[0].series.yData[index - 1];
+          var dif = this.y - lastY;
+          var r =
+            Highcharts.dateFormat("%A %b %e, %H:%M:%S", new Date(this.x)) +
+            '<br><span style="color:black">\u25CF </span>' +
+            this.points[0].series.name +
+            ": <b>" +
+            Highcharts.numberFormat(this.y, 0);
+          if (dif < 0) {
+            r +=
+              '<span style="color:#ff0000;font-weight:bold;"> (' +
+              Highcharts.numberFormat(dif, 0) +
+              ")</span>";
+          }
+          if (dif > 0) {
+            r +=
+              '<span style="color:#00bb00;font-weight:bold;"> (+' +
+              Highcharts.numberFormat(dif, 0) +
+              ")</span>";
+          }
+          return r;
+        },
+      },
+            series: [
+              {
+                showInLegend: false,
+                name: "Subscribers",
+                marker: { enabled: false },
+                color: "#FFFFFF",
+                lineColor: "#FFFFFF",
+                lineWidth: 5,
+              },
+            ],
+        });
+
+  </script>
+</html>

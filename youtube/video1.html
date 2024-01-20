@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Video Statistics</title>
+    <link href="../css/video1.css" rel="stylesheet"/>
+    <link href="../odometer/odometer.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <script src="../odometer/odometer.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.highcharts.com/10.3.3/highcharts.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <div>
+          <span class="video-name" id="name" onclick="search()">Loading...</span>
+      </div>
+      <br>
+      <div class="card1">
+         <h1 class="views">Views<iconify-icon icon="mdi:eye" class="view-icon"></iconify-icon> <span id="views-api" class="odometer count">0</span></h1>
+         <span class="odometer count1" id="views">0</span>
+    </div>
+      <br>
+         <div class="card2">
+           <h1 class="likes">Likes<iconify-icon icon="material-symbols:thumb-up-sharp" class="likes-icon"></iconify-icon></h1>
+           <span class="odometer count2" id="likes">0</span>
+         </div>
+        </div>
+        <img class="video-background" id="background" alt="">
+  </body>
+
+  <script>
+      const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+
+    fetch(`https://mixerno.space/api/youtube-video-counter/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.user[0].count;
+        document.getElementById("background").src = data.user[1].count;
+      });
+
+      function data() {
+      fetch(`https://axern.space/api/get?platform=youtube&type=video&id=${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          count = data.estViewCount;
+          count2 = data.total.likes;
+          count3 = data.apiViewCount;
+        });
+    }
+
+    function render() {
+      document.getElementById("views").innerHTML = count;
+      document.getElementById("likes").innerHTML = count2;
+      document.getElementById("views-api").innerHTML = count3;
+    };
+
+    setInterval(() => {
+      data();
+      render();
+    }, 2000);
+
+
+    function search() {
+  const prompt = window.prompt("Enter channel Name, ID, or URL.");
+  if (prompt) {
+    fetch(`https://livecounts.xyz/api/youtube-live-view-count/search/${prompt}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "?id=" + data.results[0].id;
+        idName = data.results[0].id;
+        genGraph();
+      });
+  }
+};
+  </script>
+</html>

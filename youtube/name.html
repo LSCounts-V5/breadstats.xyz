@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Name / Handle</title>
+    <link href="../css/name.css" rel="stylesheet"/>
+    <link href="../odometer/odometer.css" rel="stylesheet"/>
+    <script src="../odometer/odometer.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <span class="name" id="name" onclick="search()">Loading...</span>
+      <br>
+      <span class="handle" id="handle">Loading...</span> 
+    </div>
+  </body>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+    fetch(`https://axern.space/api/get?platform=youtube&type=channel&id=${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.snippet.title;
+        document.getElementById("handle").textContent = data.snippet.customUrl;
+      });
+
+    function search() {
+  const prompt = window.prompt("Enter channel Name, ID, or URL.");
+  if (prompt) {
+    fetch(`https://livecounts.xyz/api/youtube-live-subscriber-count/search/${prompt}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "?id=" + data.results[0].id;
+        idName = data.results[0].id;
+        genGraph();
+      });
+  }
+};
+
+  </script>
+</html>
