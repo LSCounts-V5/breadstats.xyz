@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link href="../../css/stream.css" rel="stylesheet"/>
+    <link href="../../odometer/odometer.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <script src="../../odometer/odometer.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
+
+  <body>
+    <div class="card1">
+     <iconify-icon icon="ic:baseline-person" style="color: rgb(5, 143, 255); font-size: 45px;"></iconify-icon>
+      <span class="odometer count1" id="viewers">0</span>
+    </div>
+    <div class="card2">
+      <iconify-icon icon="material-symbols:thumb-up-sharp" style="color: #7f7; font-size: 45px;"></iconify-icon>
+      <span class="odometer count2" id="likes">0</span>
+    </div>
+    <div class="card3">
+      <iconify-icon icon="ion:eye-sharp" style="color: rgb(255, 255, 0); font-size: 45px;"></iconify-icon>
+      <span class="odometer count3" id="views">0</span>
+    </div>
+    <div class="card4">
+      <span class="current">Current Stream:</span>
+      <h1 class="user-name" id="name">Loading...</h1>
+      <input type="text" placeholder="Search.." class="searchbar" onclick="search()">
+    </div>
+  </body>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("id") || "";
+    var count = 0;
+
+    fetch(`https://mixerno.space/api/youtube-stream-counter/user/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.user[0].count;
+      });
+
+      function data() {
+      fetch(`https://axern.space/api/get?platform=youtube&type=stream&id=${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          count = data.apiViewerCount;
+          count2 = data.apiLikeCount;
+          count3 = data.estViewCount;
+
+          if (viewersGraph.series[0].points.length >= 3600)
+					viewersGraph.series[0].data[0].remove();
+          viewersGraph.series[0].addPoint([Date.now(), data.apiViewerCount]);
+
+        if (likesGraph.series[0].points.length >= 3600)
+        likesGraph.series[0].data[0].remove();
+				likesGraph.series[0].addPoint([Date.now(), data.apiLikeCount]);
+
+        if (viewsGraph.series[0].points.length >= 3600)
+        viewsGraph.series[0].data[0].remove();
+				viewsGraph.series[0].addPoint([Date.now(), data.estViewCount]);
+        }
+        )};
+
+    function render() {
+      document.getElementById("viewers").innerHTML = count;
+      document.getElementById("likes").innerHTML = count2;
+      document.getElementById("views").innerHTML = count3;
+    }
+
+    setInterval(() => {
+      data();
+      render();
+    }, 2000);
+
+
+    function search() {
+  const prompt = window.prompt("Enter stream Name, ID, or URL.");
+  if (prompt) {
+    fetch(`https://livecounts.xyz/api/youtube-live-video-count/search/${prompt}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "?id=" + data.results[0].id;
+        idName = data.results[0].id;
+        genGraph();
+      });
+  }
+};
+  </script>
+</html>
